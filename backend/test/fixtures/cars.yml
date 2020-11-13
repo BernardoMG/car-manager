@@ -1,11 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  available_from: 2020-11-13
-  year: 1
-  monthly: 9.99
-
-two:
-  available_from: 2020-11-13
-  year: 1
-  monthly: 9.99
+boguinhas:
+  available_from: <%= Date.today.strftime('%Y-%m-%d') %>
+  year: 2020
+  monthly: 125.99
+  maker: jeep
+  model: renegade
+  color: marron
