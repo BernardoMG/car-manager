@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+color_list = [
+  %w[white FFFFFF],
+  %w[black 000000],
+  %w[red FF0000],
+  %w[yellow FFFF00],
+  %w[blue 0000FF],
+  %w[gray 808080]
+]
