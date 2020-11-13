@@ -1,5 +1,8 @@
 class Model < ApplicationRecord
-  belongs_to :makers
+  belongs_to :maker
   has_many :cars
-  has_many :colors, through: model_colors
+  has_many :model_colors
+  has_many :colors, through: :model_colors
+
+  validates :name, presence: { message: 'can\'t be blank.' }
 end
