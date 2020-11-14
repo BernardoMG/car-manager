@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        car:
+          attributes:
+            maker:
+              required: 'Does not exists. Please send a valid maker_id.'
+            model:
+              required: 'Does not exists. Please send a valid model_id.'
+            color:
+              required: 'Does not exists. Please, first check all the available model colors.'

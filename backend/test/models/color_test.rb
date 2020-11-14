@@ -14,7 +14,7 @@ class ColorTest < ActiveSupport::TestCase
     color.name = nil
 
     assert_not color.save
-    assert_equal color.errors.messages[:name][0], 'can\'t be blank.'
+    assert_equal color.errors.messages[:name][0], 'Can\'t be blank.'
   end
 
   test 'should not save color without a code' do
@@ -22,6 +22,6 @@ class ColorTest < ActiveSupport::TestCase
     color.code = nil
 
     assert_not color.save
-    assert_equal color.errors.messages[:code][0], 'can\'t be blank.'
+    assert_equal color.errors.messages[:code][0], 'Can\'t be blank.'
   end
 end

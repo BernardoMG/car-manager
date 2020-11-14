@@ -14,6 +14,6 @@ class MakerTest < ActiveSupport::TestCase
     maker.name = nil
 
     assert_not maker.save
-    assert_equal maker.errors.messages[:name][0], 'can\'t be blank.'
+    assert_equal maker.errors.messages[:name][0], 'Can\'t be blank.'
   end
 end

@@ -14,6 +14,6 @@ class ModelTest < ActiveSupport::TestCase
     model.name = nil
 
     assert_not model.save
-    assert_equal model.errors.messages[:name][0], 'can\'t be blank.'
+    assert_equal model.errors.messages[:name][0], 'Can\'t be blank.'
   end
 end
