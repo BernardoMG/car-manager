@@ -19,21 +19,51 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
     car.color = colors(:yellow)
 
     post cars_url, params: { car: car }, as: :json
+    json_response = JSON.parse(response.body)
 
-    assert_response(
-      422,
-      {
-        'errors': {
-          'color': [
-            'Does not exists. Please, first check all the available model colors.'
-          ]
-        }
-      }
+    assert_response :unprocessable_entity
+    assert_equal(response.status, 422)
+    assert_equal(
+      json_response['errors']['color'][0],
+      'Model does not exists on the requested color. Please, first check all the available model colors.'
     )
   end
 
-  # test "should update car" do
-  #   patch car_url(@car), params: { car: {  } }, as: :json
-  #   assert_response 200
-  # end
+  test 'should update car' do
+    car = @car.clone
+    car.year = 1994
+    patch car_url(@car), params: { car: car }, as: :json
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(
+      json_response['car']['year'],
+      1994
+    )
+  end
+
+  test 'should not update car because it does not exists' do
+    patch car_url(4100), params: { car: @car }, as: :json
+    json_response = JSON.parse(response.body)
+
+    assert_response :not_found
+    assert_equal(response.status, 404)
+    assert_equal(
+      json_response['error'],
+      'Resource not found.'
+    )
+  end
+
+  test 'should not update a car resource due to missing parameters' do
+    patch car_url(@car), params: { car: { } }, as: :json
+    json_response = JSON.parse(response.body)
+
+    assert_response :unprocessable_entity
+    assert_equal(response.status, 422)
+    assert_equal(
+      json_response['error'],
+      'param is missing or the value is empty: car.'
+    )
+  end
 end
