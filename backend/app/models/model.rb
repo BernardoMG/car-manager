@@ -4,5 +4,5 @@ class Model < ApplicationRecord
   has_many :model_colors
   has_many :colors, through: :model_colors
 
-  validates :name, presence: { message: 'can\'t be blank.' }
+  validates :name, presence: { message: 'Can\'t be blank.' }
 end

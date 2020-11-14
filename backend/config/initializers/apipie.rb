@@ -7,6 +7,7 @@ Apipie.configure do |config|
   config.default_version         = '1.0'
   config.copyright = '&copy; 2020 Bernardo Graça'
   config.translate = false
+  config.validate = false
 
   # where is your API defined?
   config.api_controllers_matcher = "#{Rails.root}/app/controllers/**/*.rb"

@@ -3,3 +3,7 @@
 marron:
   name: Marron
   code: 800000
+
+yellow:
+  name: Yellow
+  code: FFFF00
