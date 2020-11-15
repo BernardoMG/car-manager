@@ -3,3 +3,7 @@
 simple_association:
   model: renegade
   color: marron
+
+smart_association:
+  model: for_two
+  color: black

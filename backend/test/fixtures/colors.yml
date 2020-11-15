@@ -7,3 +7,7 @@ marron:
 yellow:
   name: Yellow
   code: FFFF00
+
+black:
+  name: Yellow
+  code: 000000

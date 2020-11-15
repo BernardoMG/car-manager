@@ -7,3 +7,27 @@ boguinhas:
   maker: jeep
   model: renegade
   color: marron
+
+boguinhas_black_friday:
+  available_from: <%= (Date.today + 3.months).strftime('%Y-%m-%d') %>
+  year: 2020
+  monthly: 99.99
+  maker: jeep
+  model: renegade
+  color: marron
+
+jeep:
+  available_from: <%= (Date.today - 1.day).strftime('%Y-%m-%d') %>
+  year: 2020
+  monthly: 125.99
+  maker: jeep
+  model: renegade
+  color: marron
+
+smart:
+  available_from: <%= (Date.today + 4.months).strftime('%Y-%m-%d') %>
+  year: 2020
+  monthly: 125.99
+  maker: smart
+  model: for_two
+  color: black

@@ -18,8 +18,8 @@ services:
       - "3000:3000"
     depends_on:
       - db
-  # test:
-  #   build: ./backend
-  #   volumes:
-  #     - ./backend:/app
-  #   command: bundle exec rspec spec  
+  test:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    command: rails test  

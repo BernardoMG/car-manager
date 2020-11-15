@@ -3,15 +3,8 @@ class CarsController < ApplicationController
 
   # GET /cars
   def index
-    byebug
-    result = Cars::Collector.new(search_params).run
-    # @cars = Car.all
-
-    if result.success
-      render json: result.data, status: :ok
-    else
-      render json: { 'error': 'Something went wrong. Please contact support team.' }, status: :internal_server_error
-    end
+    cars = Cars::Collector.new(search_params).run
+    render json: { 'cars': cars }, status: :ok
   rescue StandardError
     render json: { 'error': 'Something went wrong. Please contact support team.' }, status: :internal_server_error
   end
