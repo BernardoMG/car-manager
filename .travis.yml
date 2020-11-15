@@ -8,8 +8,8 @@ before_install:
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
 before_script:
-  - docker-compose up -d --build
-  - sleep 45
+  - docker-compose build
+  - docker-compose up
 
 script: 
   - docker-compose run test
