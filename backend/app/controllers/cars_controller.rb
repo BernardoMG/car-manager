@@ -58,7 +58,9 @@ class CarsController < ApplicationController
     params.permit(
       :maker_id,
       :color_id,
-      :page
+      :page,
+      :sort,
+      :sort_order
     )
   end
 end
