@@ -1,6 +1,9 @@
 services:
   - docker
 
+env:
+  DOCKER_COMPOSE_VERSION: 3.8
+
 before_script:
   - docker-compose up -d --build
 
