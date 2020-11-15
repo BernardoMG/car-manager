@@ -39,7 +39,7 @@ module ApipieConcern
   formats ['json']
   param :maker_id, :number, required: false, desc: 'Car maker identier. Should exist.'
   param :color_id, :number, required: false, desc: 'Car color id. Should exist.'
-  # param :model_id, :number, required: true, desc: 'Car model id. Model must exist.'
+  param :page, :number, required: false, desc: 'Page number. Considering that items per page is 20.'
   # param :maker_id, :number, required: true, desc: 'Car maker id. Maker must exist.'
   # param :color_id, :number, required: true, desc: 'Car color id. Color must exist.'
   param_group :car_generic_errors

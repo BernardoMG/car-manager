@@ -57,7 +57,8 @@ class CarsController < ApplicationController
   def search_params
     params.permit(
       :maker_id,
-      :color_id
+      :color_id,
+      :page
     )
   end
 end

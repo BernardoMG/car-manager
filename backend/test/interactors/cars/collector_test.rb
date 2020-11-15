@@ -57,6 +57,22 @@ module Cars
       assert_equal(cars[0]['monthly'], '159.99')
     end
 
+    test 'should return all cars using page filter' do
+      filters = { page: 1 }
+
+      cars = Cars::Collector.new(filters).run
+
+      assert_equal(cars.size, 3)
+    end
+
+    test 'should return no cars since page value exceeds entries' do
+      filters = { page: 2 }
+
+      cars = Cars::Collector.new(filters).run
+
+      assert_equal(cars.size, 0)
+    end
+
     private
 
     def future_date_to_get_no_entries(number_months)

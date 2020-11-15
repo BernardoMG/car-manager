@@ -1,0 +1,7 @@
+language: ruby
+
+rvm:
+  - 2.7.1
+
+install: cd backend/ && bundle install
+script: bundle exec rails test

@@ -8,7 +8,8 @@ module Cars
       start_date = future_date_to_get_no_entries(0)
       end_date = future_date_to_get_no_entries(3)
 
-      cars = Cars::FetchDb.fetch_cars(nil, nil, start_date, end_date).as_json
+      filters = { start_date: start_date, end_date: end_date }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
 
       assert_equal(cars.size, 3)
       assert_equal(cars[0]['monthly'], '99.99')
@@ -19,7 +20,8 @@ module Cars
       start_date = future_date_to_get_no_entries(6)
       end_date = future_date_to_get_no_entries(9)
 
-      cars = Cars::FetchDb.fetch_cars(nil, nil, start_date, end_date).as_json
+      filters = { start_date: start_date, end_date: end_date }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
 
       assert_equal(cars.size, 0)
     end
@@ -29,7 +31,8 @@ module Cars
       end_date = future_date_to_get_no_entries(3)
       maker = makers(:smart)
 
-      cars = Cars::FetchDb.fetch_cars(maker.id, nil, start_date, end_date).as_json
+      filters = { maker_id: maker.id, start_date: start_date, end_date: end_date }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
 
       assert_equal(cars.size, 1)
       assert_equal(cars[0]['monthly'], '159.99')
@@ -40,7 +43,8 @@ module Cars
       end_date = future_date_to_get_no_entries(3)
       color = colors(:black)
 
-      cars = Cars::FetchDb.fetch_cars(nil, color.id, start_date, end_date).as_json
+      filters = { color_id: color.id, start_date: start_date, end_date: end_date }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
 
       assert_equal(cars.size, 1)
       assert_equal(cars[0]['monthly'], '159.99')
@@ -52,10 +56,32 @@ module Cars
       maker = makers(:smart)
       color = colors(:black)
 
-      cars = Cars::FetchDb.fetch_cars(maker.id, color.id, start_date, end_date).as_json
+      filters = { maker_id: maker.id, color_id: color.id, start_date: start_date, end_date: end_date }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
 
       assert_equal(cars.size, 1)
       assert_equal(cars[0]['monthly'], '159.99')
+    end
+
+    test 'should return all cars from a specific offset' do
+      start_date = future_date_to_get_no_entries(0)
+      end_date = future_date_to_get_no_entries(3)
+
+      filters = { start_date: start_date, end_date: end_date, limit: 20, offset: 0 }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
+
+      assert_equal(cars.size, 3)
+      assert_equal(cars[0]['monthly'], '99.99')
+    end
+
+    test 'should return no cars since offset exceeds available entries' do
+      start_date = future_date_to_get_no_entries(0)
+      end_date = future_date_to_get_no_entries(3)
+
+      filters = { start_date: start_date, end_date: end_date, limit: 20, offset: 20 }
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
+
+      assert_equal(cars.size, 0)
     end
 
     private
