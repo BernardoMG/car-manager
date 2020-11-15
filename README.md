@@ -8,3 +8,7 @@
 On another window run: 
 
 3. Run `docker-compose run backend rake db:setup`
+
+## How to run application tests
+
+Run `docker-compose run test`

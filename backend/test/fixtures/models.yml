@@ -3,3 +3,7 @@
 renegade:
   name: Renegade
   maker: jeep
+
+for_two:
+  name: ForTwo
+  maker: Smart

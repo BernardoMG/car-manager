@@ -66,4 +66,13 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
       'param is missing or the value is empty: car.'
     )
   end
+
+  test 'should get all cars considering default filters' do
+    get cars_url, as: :json
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(json_response['cars'].size, 2)
+  end
 end
