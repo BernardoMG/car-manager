@@ -73,6 +73,43 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal(response.status, 200)
-    assert_equal(json_response['cars'].size, 2)
+    assert_equal(json_response['cars'].size, 3)
+  end
+
+  test 'should get all cars considering maker filter' do
+    maker = makers(:smart)
+    filters = { maker_id: maker.id }
+
+    get cars_url, params: filters
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(json_response['cars'].size, 1)
+  end
+
+  test 'should get all cars considering color filter' do
+    color = colors(:black)
+    filters = { color_id: color.id }
+
+    get cars_url, params: filters
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(json_response['cars'].size, 1)
+  end
+
+  test 'should get all cars considering maker and color filter' do
+    maker = makers(:smart)
+    color = colors(:black)
+    filters = { maker_id: maker.id, color_id: color.id }
+
+    get cars_url, params: filters
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(json_response['cars'].size, 1)
   end
 end

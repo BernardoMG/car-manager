@@ -37,8 +37,8 @@ module ApipieConcern
                       By default, sorted by monthly from lowest to highest
                       and with an available_from bigger than three months in the future.'
   formats ['json']
-  # param :year, :number, required: true, desc: 'The year of the car.'
-  # param :monthly, :decimal, required: true, desc: 'Car subscription price. Decimal value.'
+  param :maker_id, :number, required: false, desc: 'Car maker identier. Should exist.'
+  param :color_id, :number, required: false, desc: 'Car color id. Should exist.'
   # param :model_id, :number, required: true, desc: 'Car model id. Model must exist.'
   # param :maker_id, :number, required: true, desc: 'Car maker id. Maker must exist.'
   # param :color_id, :number, required: true, desc: 'Car color id. Color must exist.'
