@@ -39,9 +39,10 @@ module ApipieConcern
   formats ['json']
   param :maker_id, :number, required: false, desc: 'Car maker identier. Should exist.'
   param :color_id, :number, required: false, desc: 'Car color id. Should exist.'
-  # param :model_id, :number, required: true, desc: 'Car model id. Model must exist.'
-  # param :maker_id, :number, required: true, desc: 'Car maker id. Maker must exist.'
-  # param :color_id, :number, required: true, desc: 'Car color id. Color must exist.'
+  param :page, :number, required: false, desc: 'Page number. Considering that items per page is 20.'
+  param :sort, String, required: false, desc: 'Sort filter. Available values: monthly, year, maker (maker name), available_from.
+                                              Default value: asc.'
+  param :sort_order, String, required: true, desc: 'Sort order. Available values: asc and desc.'
   param_group :car_generic_errors
   returns code: 200, desc: 'Request went well.' do
     property :cars, Array, desc: 'List of all Cars' do

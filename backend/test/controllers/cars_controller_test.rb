@@ -112,4 +112,15 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
     assert_equal(response.status, 200)
     assert_equal(json_response['cars'].size, 1)
   end
+
+  test 'should get all cars considering page filter' do
+    filters = { page: 1 }
+
+    get cars_url, params: filters
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(json_response['cars'].size, 3)
+  end
 end
