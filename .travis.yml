@@ -1,7 +1,11 @@
-language: ruby
+services:
+  - docker
 
-rvm:
-  - 2.7.1
+before_script:
+  - docker-compose up -d --build
 
-install: cd backend/ && bundle install
-script: bundle exec rails test
+script: 
+  - docker-compose run test
+
+after_script:
+  - docker-compose down
