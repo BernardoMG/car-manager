@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_010645) do
+ActiveRecord::Schema.define(version: 2020_11_15_200938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,9 +24,12 @@ ActiveRecord::Schema.define(version: 2020_11_13_010645) do
     t.bigint "maker_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["available_from"], name: "index_cars_on_available_from"
     t.index ["color_id"], name: "index_cars_on_color_id"
     t.index ["maker_id"], name: "index_cars_on_maker_id"
     t.index ["model_id"], name: "index_cars_on_model_id"
+    t.index ["monthly"], name: "index_cars_on_monthly"
+    t.index ["year"], name: "index_cars_on_year"
   end
 
   create_table "colors", force: :cascade do |t|
@@ -40,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_010645) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_makers_on_name"
   end
 
   create_table "model_colors", force: :cascade do |t|

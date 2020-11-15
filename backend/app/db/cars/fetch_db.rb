@@ -1,14 +1,18 @@
 module Cars
   class FetchDb
     # Fetch cars considering the applied filters
+    SORT_OPTIONS = %w[montly year maker_name available_from].freeze
+    ORDER_OPTIONS = %w[asc desc].freeze
+
     def self.fetch_cars(filters)
       query = ActiveRecord::Base.__send__(
         :sanitize_sql,
-        "SELECT * FROM cars
+        "SELECT cars.* FROM cars
+        #{join_with_maker_if_sort_by_them(filters[:sort])}
         WHERE #{available_from_clause(filters[:start_date], filters[:end_date])}
         #{maker_clause_if_present(filters[:maker_id])}
         #{color_clause_if_present(filters[:color_id])}
-        ORDER BY cars.monthly ASC
+        #{order_by_clause(filters[:sort], filters[:sort_order])}
         #{pagination_clause_if_present(filters[:limit], filters[:offset])}"
       ).delete("\n")
 
@@ -36,6 +40,23 @@ module Cars
 
       "LIMIT #{limit}
       OFFSET #{offset}"
+    end
+
+    def self.order_by_clause(sort, order)
+      sort = 'monthly' if sort.blank? || !SORT_OPTIONS.include?(sort)
+      order = 'ASC' if order.blank? || !ORDER_OPTIONS.include?(order)
+
+      if sort == 'maker_name'
+        "ORDER BY makers.name #{order}"
+      else
+        "ORDER BY cars.#{sort} #{order}"
+      end
+    end
+
+    def self.join_with_maker_if_sort_by_them(sort)
+      return if sort != 'maker_name'
+
+      'INNER JOIN makers ON makers.id = cars.maker_id'
     end
   end
 end
