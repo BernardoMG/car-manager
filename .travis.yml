@@ -9,7 +9,7 @@ before_install:
 
 before_script:
   - docker-compose build
-  - docker-compose up
+  - docker-compose up db
 
 script: 
   - docker-compose run test
