@@ -40,7 +40,8 @@ module ApipieConcern
   param :maker_id, :number, required: false, desc: 'Car maker identier. Should exist.'
   param :color_id, :number, required: false, desc: 'Car color id. Should exist.'
   param :page, :number, required: false, desc: 'Page number. Considering that items per page is 20.'
-  param :sort, String, required: false, desc: 'Sort filter. Availble values: monthly, year, maker (maker name), available_from.'
+  param :sort, String, required: false, desc: 'Sort filter. Available values: monthly, year, maker (maker name), available_from.
+                                              Default value: asc.'
   param :sort_order, String, required: true, desc: 'Sort order. Available values: asc and desc.'
   param_group :car_generic_errors
   returns code: 200, desc: 'Request went well.' do
