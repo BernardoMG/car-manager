@@ -5,7 +5,7 @@
 ## How to build and run the app
 
 1. Run `docker-compose build`
-2. Run `docker-compose up`
+2. Run `docker-compose up -d backend db`
 
 On another window run: 
 
