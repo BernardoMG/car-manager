@@ -10,6 +10,7 @@ before_install:
 before_script:
   - docker-compose build
   - docker-compose up db
+  - docker-compose run backend rake db:create
 
 script: 
   - docker-compose run test
