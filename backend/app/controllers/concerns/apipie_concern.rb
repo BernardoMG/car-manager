@@ -37,10 +37,10 @@ module ApipieConcern
                       By default, sorted by monthly from lowest to highest
                       and with an available_from bigger than three months in the future.'
   formats ['json']
-  param :maker_id, :number, required: false, desc: 'Car maker identier. Should exist.'
-  param :color_id, :number, required: false, desc: 'Car color id. Should exist.'
-  param :page, :number, required: false, desc: 'Page number. Considering that items per page is 20.'
-  param :sort, String, required: false, desc: 'Sort filter. Available values: monthly, year, maker (maker name), available_from.
+  param :maker_id, :number, required: false, desc: 'Car maker identifier. Should exist.'
+  param :color_id, :number, required: false, desc: 'Car color identifier. Should exist.'
+  param :page, :number, required: false, desc: 'Page number. Considering that the items per page is 20.'
+  param :sort, String, required: false, desc: 'Sort filter. Available values: monthly, year, maker_name and available_from.
                                               Default value: monthly.'
   param :sort_order, String, required: true, desc: 'Sort order. Available values: asc and desc.
                                                     Default value: asc.'

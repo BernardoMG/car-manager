@@ -73,7 +73,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal(response.status, 200)
-    assert_equal(json_response['cars'].size, 3)
+    assert_equal(json_response['cars'].size, 4)
   end
 
   test 'should get all cars considering maker filter' do
@@ -85,7 +85,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal(response.status, 200)
-    assert_equal(json_response['cars'].size, 1)
+    assert_equal(json_response['cars'].size, 2)
   end
 
   test 'should get all cars considering color filter' do
@@ -97,7 +97,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal(response.status, 200)
-    assert_equal(json_response['cars'].size, 1)
+    assert_equal(json_response['cars'].size, 2)
   end
 
   test 'should get all cars considering maker and color filter' do
@@ -110,7 +110,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal(response.status, 200)
-    assert_equal(json_response['cars'].size, 1)
+    assert_equal(json_response['cars'].size, 2)
   end
 
   test 'should get all cars considering page filter' do
@@ -121,6 +121,25 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_equal(response.status, 200)
-    assert_equal(json_response['cars'].size, 3)
+    assert_equal(json_response['cars'].size, 4)
+  end
+
+  test 'should get all cars considering sort and sort_order filter' do
+    filters = { sort: 'available_from', sort_order: 'desc' }
+
+    get cars_url, params: filters
+    json_response = JSON.parse(response.body)
+
+    assert_response :ok
+    assert_equal(response.status, 200)
+    assert_equal(json_response['cars'].size, 4)
+    assert_equal(
+      json_response['cars'][0]['available_from'],
+      (Date.today + 3.months).strftime('%Y-%m-%d')
+    )
+    assert_equal(
+      json_response['cars'][1]['available_from'],
+      Date.today.strftime('%Y-%m-%d')
+    )
   end
 end

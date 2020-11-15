@@ -7,7 +7,7 @@ module Cars
     test 'should return all cars considering default filters' do
       cars = Cars::Collector.new({}).run
 
-      assert_equal(cars.size, 3)
+      assert_equal(cars.size, 4)
       assert_equal(cars[0]['monthly'], '99.99')
       assert_equal(cars[1]['monthly'], '125.99')
     end
@@ -32,8 +32,9 @@ module Cars
 
       cars = Cars::Collector.new(filters).run
 
-      assert_equal(cars.size, 1)
-      assert_equal(cars[0]['monthly'], '159.99')
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['monthly'], '139.99')
+      assert_equal(cars[1]['monthly'], '159.99')
     end
 
     test 'should return all cars using color filter' do
@@ -42,8 +43,9 @@ module Cars
 
       cars = Cars::Collector.new(filters).run
 
-      assert_equal(cars.size, 1)
-      assert_equal(cars[0]['monthly'], '159.99')
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['monthly'], '139.99')
+      assert_equal(cars[1]['monthly'], '159.99')
     end
 
     test 'should return all cars using maker and color filter' do
@@ -53,8 +55,9 @@ module Cars
 
       cars = Cars::Collector.new(filters).run
 
-      assert_equal(cars.size, 1)
-      assert_equal(cars[0]['monthly'], '159.99')
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['monthly'], '139.99')
+      assert_equal(cars[1]['monthly'], '159.99')
     end
 
     test 'should return all cars using page filter' do
@@ -62,7 +65,7 @@ module Cars
 
       cars = Cars::Collector.new(filters).run
 
-      assert_equal(cars.size, 3)
+      assert_equal(cars.size, 4)
     end
 
     test 'should return no cars since page value exceeds entries' do
@@ -71,6 +74,19 @@ module Cars
       cars = Cars::Collector.new(filters).run
 
       assert_equal(cars.size, 0)
+    end
+
+    test 'should return all cars using sort and sort_order filters' do
+      jeep = makers(:jeep)
+      smart = makers(:smart)
+
+      filters = { sort: 'year', sort_order: 'desc' }
+
+      cars = Cars::Collector.new(filters).run
+
+      assert_equal(cars.size, 4)
+      assert_equal(cars[0]['maker_id'], jeep.id)
+      assert_equal(cars[2]['maker_id'], smart.id)
     end
 
     private

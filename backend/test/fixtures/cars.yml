@@ -32,6 +32,14 @@ smart:
   model: for_two
   color: black
 
+smart_oldest:
+  available_from: <%= Date.today.strftime('%Y-%m-%d') %>
+  year: 2018
+  monthly: 139.99
+  maker: smart
+  model: for_two
+  color: black
+
 smart_latest:
   available_from: <%= Date.today.strftime('%Y-%m-%d') %>
   year: 2020

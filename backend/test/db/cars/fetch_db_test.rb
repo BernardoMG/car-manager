@@ -11,7 +11,7 @@ module Cars
       filters = { start_date: start_date, end_date: end_date }
       cars = Cars::FetchDb.fetch_cars(filters).as_json
 
-      assert_equal(cars.size, 3)
+      assert_equal(cars.size, 4)
       assert_equal(cars[0]['monthly'], '99.99')
       assert_equal(cars[1]['monthly'], '125.99')
     end
@@ -34,11 +34,12 @@ module Cars
       filters = { maker_id: maker.id, start_date: start_date, end_date: end_date }
       cars = Cars::FetchDb.fetch_cars(filters).as_json
 
-      assert_equal(cars.size, 1)
-      assert_equal(cars[0]['monthly'], '159.99')
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['monthly'], '139.99')
+      assert_equal(cars[1]['monthly'], '159.99')
     end
 
-    test 'should return all cars from a specific color' do
+    test 'should return all cars with a specific color' do
       start_date = future_date_to_get_no_entries(0)
       end_date = future_date_to_get_no_entries(3)
       color = colors(:black)
@@ -46,8 +47,9 @@ module Cars
       filters = { color_id: color.id, start_date: start_date, end_date: end_date }
       cars = Cars::FetchDb.fetch_cars(filters).as_json
 
-      assert_equal(cars.size, 1)
-      assert_equal(cars[0]['monthly'], '159.99')
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['monthly'], '139.99')
+      assert_equal(cars[1]['monthly'], '159.99')
     end
 
     test 'should return all cars from a specific maker and color' do
@@ -59,8 +61,9 @@ module Cars
       filters = { maker_id: maker.id, color_id: color.id, start_date: start_date, end_date: end_date }
       cars = Cars::FetchDb.fetch_cars(filters).as_json
 
-      assert_equal(cars.size, 1)
-      assert_equal(cars[0]['monthly'], '159.99')
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['monthly'], '139.99')
+      assert_equal(cars[1]['monthly'], '159.99')
     end
 
     test 'should return all cars from a specific offset' do
@@ -70,7 +73,7 @@ module Cars
       filters = { start_date: start_date, end_date: end_date, limit: 20, offset: 0 }
       cars = Cars::FetchDb.fetch_cars(filters).as_json
 
-      assert_equal(cars.size, 3)
+      assert_equal(cars.size, 4)
       assert_equal(cars[0]['monthly'], '99.99')
     end
 
@@ -82,6 +85,46 @@ module Cars
       cars = Cars::FetchDb.fetch_cars(filters).as_json
 
       assert_equal(cars.size, 0)
+    end
+
+    test 'should return cars sorted by year and from a specific marker' do
+      start_date = future_date_to_get_no_entries(0)
+      end_date = future_date_to_get_no_entries(3)
+      maker = makers(:smart)
+
+      filters = {
+        sort: 'year',
+        sort_order: 'desc',
+        maker_id: maker.id,
+        start_date: start_date,
+        end_date: end_date
+      }
+
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
+
+      assert_equal(cars.size, 2)
+      assert_equal(cars[0]['year'], 2020)
+      assert_equal(cars[1]['year'], 2018)
+    end
+
+    test 'should return cars sorted by marker name' do
+      start_date = future_date_to_get_no_entries(0)
+      end_date = future_date_to_get_no_entries(3)
+      jeep = makers(:jeep)
+      smart = makers(:smart)
+
+      filters = {
+        sort: 'maker_name',
+        sort_order: 'asc',
+        start_date: start_date,
+        end_date: end_date
+      }
+
+      cars = Cars::FetchDb.fetch_cars(filters).as_json
+
+      assert_equal(cars.size, 4)
+      assert_equal(cars[0]['maker_id'], jeep.id)
+      assert_equal(cars[2]['maker_id'], smart.id)
     end
 
     private

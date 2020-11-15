@@ -13,4 +13,11 @@ On another window run:
 
 ## How to run application tests
 
-Run `docker-compose run test`
+Run `docker-compose run test`.
+
+Note: I've also setup Travis CI for this repository. You can check its badge on top of this page ✅.
+First time using docker on travis.yml 🚀🙌.
+
+# API Documentation
+
+# DB Schema
