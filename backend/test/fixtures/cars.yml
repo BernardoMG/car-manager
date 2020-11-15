@@ -31,3 +31,11 @@ smart:
   maker: smart
   model: for_two
   color: black
+
+smart_latest:
+  available_from: <%= Date.today.strftime('%Y-%m-%d') %>
+  year: 2020
+  monthly: 159.99
+  maker: smart
+  model: for_two
+  color: black

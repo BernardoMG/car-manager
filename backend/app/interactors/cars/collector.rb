@@ -2,10 +2,12 @@ module Cars
   class Collector
     DATE_FORMAT = '%Y-%m-%d'.freeze
 
-    attr_reader :filters
+    attr_reader :filters, :maker_id, :color_id
 
     def initialize(filters)
       @filters = filters
+      @maker_id = filters[:maker_id]
+      @color_id = filters[:color_id]
     end
 
     def self.run(filters)
@@ -14,7 +16,13 @@ module Cars
 
     def run
       start_date = current_date
-      cars = Cars::FetchDb.fetch_cars(filters, start_date, end_date)
+      cars = Cars::FetchDb.fetch_cars(
+        maker_id,
+        color_id,
+        start_date,
+        end_date
+      )
+
       cars.as_json
     end
 
