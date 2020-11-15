@@ -9,7 +9,8 @@ before_install:
 
 before_script:
   - docker-compose build
-  - docker-compose up db
+  - docker-compose up -d db
+  - sleep 30
   - docker-compose run backend rake db:create
 
 script: 
