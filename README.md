@@ -15,8 +15,7 @@ On another window run:
 
 Run `docker-compose run test`.
 
-Note: I've also setup Travis CI for this repository. You can check its badge on top of this page ✅.
-First time using docker on travis.yml 🚀🙌.
+##### Note: I've also setup Travis CI for this repository. You can check its badge on top of this page ✅. First time using docker on travis.yml 🚀🙌.
 
 # API Documentation
 
