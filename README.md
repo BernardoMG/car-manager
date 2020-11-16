@@ -15,7 +15,9 @@ On another window run (make sure that both containers are up and running):
 
 Run `docker-compose run test`. (You only need to have db container up.)
 
-##### Note: I've also setup Travis CI for this repository. You can check its badge on top of this page ✅. First time using docker on travis.yml 🚀🙌.
+##### Note: If you hit on some issue related with privileges try to run the above commands with sudo.
+
+I've also setup Travis CI for this repository. You can check its badge on top of this page ✅. First time using docker on travis.yml 🚀🙌.
 
 # API Documentation
 
