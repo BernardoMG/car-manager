@@ -37,3 +37,5 @@ We have 5 tables: cars, models, makers, colors and model_colors (join table betw
 
 5. Model Colors
 <img width="624" alt="Screenshot 2020-11-16 at 12 10 27" src="https://user-images.githubusercontent.com/11138222/99251133-b9f8c280-2804-11eb-8ef5-6a4c210fab23.png">
+
+You can also see the db schema [here](https://github.com/BernardoMG/car-manager/blob/main/backend/db/schema.rb).
