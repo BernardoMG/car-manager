@@ -108,7 +108,7 @@ class CarTest < ActiveSupport::TestCase
     )
   end
 
-  test 'should not save car with a color not availble for the specified model' do
+  test 'should not save car with a color not available for the specified model' do
     car = cars(:boguinhas)
     car.color = colors(:yellow)
 

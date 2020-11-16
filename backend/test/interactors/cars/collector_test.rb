@@ -12,14 +12,14 @@ module Cars
       assert_equal(cars[1]['monthly'], '125.99')
     end
 
-    test 'should return no car since db has only old entries' do
+    test 'should return no car since db has no available entries' do
       Cars::Collector.any_instance.stubs(
         :current_date
-      ).returns(future_date_to_get_no_entries(6))
+      ).returns(build_formatted_date(6))
 
       Cars::Collector.any_instance.stubs(
         :current_date
-      ).returns(future_date_to_get_no_entries(9))
+      ).returns(build_formatted_date(9))
 
       cars = Cars::Collector.new({}).run
 
@@ -91,7 +91,7 @@ module Cars
 
     private
 
-    def future_date_to_get_no_entries(number_months)
+    def build_formatted_date(number_months)
       (Date.today + number_months.months).strftime('%Y-%m-%d')
     end
   end

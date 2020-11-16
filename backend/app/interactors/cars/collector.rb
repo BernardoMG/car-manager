@@ -1,4 +1,5 @@
 module Cars
+  # Responsable for preparing search filters to query DB about cars.
   class Collector
     DATE_FORMAT = '%Y-%m-%d'.freeze
     ITEMS_PER_PAGE = 20
@@ -33,7 +34,7 @@ module Cars
       Date.today.strftime(DATE_FORMAT)
     end
 
-    # We want to filter cars with an available from bigger than three months in the future.
+    # We want to filter cars with an available_from bigger than three months in the future.
     def end_date
       (Date.today + 3.months).strftime(DATE_FORMAT)
     end

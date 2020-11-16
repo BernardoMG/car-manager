@@ -1,7 +1,7 @@
 require 'test_helper'
 
 # Related to Cars controller
-# Mostly to ensure that each validation works as expected
+# Mostly to ensure that each validation works
 # And produces the expected response
 class CarsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -43,7 +43,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
     )
   end
 
-  test 'should not update car because it does not exists' do
+  test 'should not update car because it does not exist' do
     patch car_url(4100), params: { car: @car }, as: :json
     json_response = JSON.parse(response.body)
 
@@ -55,7 +55,7 @@ class CarsControllerTest < ActionDispatch::IntegrationTest
     )
   end
 
-  test 'should not update a car resource due to missing parameters' do
+  test 'should not update car resource due to missing parameters' do
     patch car_url(@car), params: { car: { } }, as: :json
     json_response = JSON.parse(response.body)
 

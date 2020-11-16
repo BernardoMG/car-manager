@@ -1,7 +1,7 @@
 module Cars
   class FetchDb
-    # Fetch cars considering the applied filters
-    SORT_OPTIONS = %w[montly year maker_name available_from].freeze
+    # Fetch cars considering the search filters
+    SORT_OPTIONS = %w[monthly year maker_name available_from].freeze
     ORDER_OPTIONS = %w[asc desc].freeze
 
     def self.fetch_cars(filters)

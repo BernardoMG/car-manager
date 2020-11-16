@@ -2,9 +2,9 @@ module ApipieConcern
   extend Apipie::DSL::Concern
   # the param_group :car is defined here to describe the request body.
   def_param_group :car do
-    param :car, Hash, required: true, desc: 'Car params' do
+    param :car, Hash, required: true, desc: 'Car parameters.' do
       param :available_from, String, required: true, desc: 'Available from, when the car is available for booking.
-                                                            Use the following date format YYYY-mm-dd (e.g 2020/11/14).'
+                                                            Use the following date format YYYY-mm-dd (e.g 2020-11-14).'
       param :year, :number, required: true, desc: 'The year of the car.'
       param :monthly, :decimal, required: true, desc: 'Car subscription price. Decimal value.'
       param :model_id, :number, required: true, desc: 'Car model id. Model must exist.'
@@ -13,7 +13,7 @@ module ApipieConcern
     end
   end
 
-  # the param_group :car_response is defined here to describe the output returned.
+  # the param_group :car_response is defined here to describe the generic response returned.
   def_param_group :car_response do
     property :available_from, String, required: true, desc: 'Available from, when the car is available for booking.'
     property :year, :number, required: true, desc: 'The year of the car.'

@@ -17,4 +17,4 @@ script:
   - docker-compose run test
 
 after_script:
-  - docker-compose down
+  - docker-compose down -v
