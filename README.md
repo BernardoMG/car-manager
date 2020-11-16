@@ -19,6 +19,17 @@ Run `docker-compose run test`. (You only need to have db container up.)
 
 # API Documentation
 
+For API documentation, I've used [Apipie](https://github.com/Apipie/apipie-rails) which is a DSL and Rails engine for documenting RESTful APIs. You can see all the details [here](https://github.com/BernardoMG/car-manager/blob/main/backend/app/controllers/concerns/apipie_concern.rb). First time using it and it was awesome! 👌🏽
+
+If you run the API is just a matter of access the following endpoint: localhost:3000/apipie. There you will see the documentation for all the requested endpoints (POST, PUT/PATCH and GET). For each one you have details about:
+- Request method, path and description;
+- Request parameters (require or optional, type and description);
+- All possible errors that can be returned as a response (each with a proper description);
+- Request response body with all the details about parameters and types.
+
+In case of you don't run the API please check the the following GIF 😄.
+
+
 # DB Schema
 
 We have 5 tables: cars, models, makers, colors and model_colors (join table between models and colors). There's the schema for each table:
