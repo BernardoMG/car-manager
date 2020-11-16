@@ -29,7 +29,7 @@ If you run the API is just a matter of access the following endpoint: localhost:
 - All possible errors that can be returned as a response (each with a proper description);
 - Request response body with all the details about parameters and types.
 
-In case of you don't run the API please check the the following GIF 😄.
+In case of you don't run the API please check the following GIF 😄.
 
 ![Nov-16-2020 13-09-40](https://user-images.githubusercontent.com/11138222/99256290-16f87680-280d-11eb-836c-806b98d96c8c.gif)
 
